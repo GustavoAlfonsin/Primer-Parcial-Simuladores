@@ -7,7 +7,7 @@ public class Player_Controller : MonoBehaviour
 {
     private Rigidbody rb;
     private Animator animator;
-    [SerializeField]private bool running;
+    private bool running;
     [SerializeField] private float walkSpeed;
     [SerializeField] private float runSpeed;
     [SerializeField] private float turnSpeed;
