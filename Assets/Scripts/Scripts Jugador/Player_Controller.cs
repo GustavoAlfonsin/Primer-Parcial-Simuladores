@@ -6,7 +6,12 @@ using UnityEngine;
 public class Player_Controller : MonoBehaviour
 {
     private Rigidbody rb;
+    private Vector2 inputMovimiento;
+    private Vector2 inputRotacion;
+
     private Animator animator;
+    private Transform cam;
+    float rotX;
     private bool running;
     [SerializeField] private float walkSpeed;
     [SerializeField] private float runSpeed;
@@ -15,18 +20,38 @@ public class Player_Controller : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        cam = transform.GetChild(0);
+        rotX = cam.eulerAngles.x;
         animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        EstaCorriendo();
-        movimiento();
+        inputMovimiento.x = Input.GetAxis("Horizontal");
+        inputMovimiento.y = Input.GetAxis("Vertical");
+
+        inputRotacion.x = Input.GetAxis("Mouse X") * turnSpeed;
+        inputRotacion.y = Input.GetAxis("Mouse Y") * turnSpeed;
+
+        corriendo();
         controlAnimaciones();
     }
 
-    private void EstaCorriendo()
+    private void FixedUpdate()
+    {
+        float vel = running ? runSpeed : walkSpeed;
+
+        rb.velocity = transform.forward * vel * inputMovimiento.y
+                        + new Vector3(0, rb.velocity.y, 0);
+
+        rotX -= inputRotacion.y;
+        rotX = Mathf.Clamp(rotX, -30, 30);
+        cam.localRotation = Quaternion.Euler(rotX,0,0);
+        transform.rotation *= Quaternion.Euler(0, inputRotacion.x, 0);
+    }
+
+    void corriendo()
     {
         if (Input.GetKey(KeyCode.C))
         {
@@ -38,20 +63,6 @@ public class Player_Controller : MonoBehaviour
         }
     }
 
-    private void movimiento()
-    {
-        float hor = Input.GetAxisRaw("Horizontal");
-        float ver = Input.GetAxisRaw("Vertical");
-        if (running)
-        {
-            rb.transform.Translate(Vector3.forward * Time.deltaTime * runSpeed * ver);
-        }
-        else
-        {
-            rb.transform.Translate(Vector3.forward * Time.deltaTime * walkSpeed * ver);
-        }
-        rb.transform.Rotate(Vector3.up, turnSpeed * hor * Time.deltaTime);
-    }
     private void controlAnimaciones()
     {
         float ver = Input.GetAxisRaw("Vertical");
