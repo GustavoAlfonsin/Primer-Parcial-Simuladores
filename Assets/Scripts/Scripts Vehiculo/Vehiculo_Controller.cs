@@ -33,6 +33,7 @@ public class Vehiculo_Controller : MonoBehaviour
 
         moveInput = Input.GetAxis("Vertical");
         steerInput = Input.GetAxis("Horizontal");
+
         transform.position = sphereRB.transform.position;
 
         velocity = BikeBody.transform.InverseTransformDirection(BikeBody.velocity);
