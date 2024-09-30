@@ -67,7 +67,7 @@ public class ContenedorPedidos : MonoBehaviour, IInteractiveObject
     private void mostrarEntrega()
     {
         var destino = pedidos.FirstOrDefault(x => !x.entregado);
-        if (destino != null)
+        if (destino != null && enServicio)
         {
             destino.Destino.transform.GetChild(0).gameObject.SetActive(true);
         }
