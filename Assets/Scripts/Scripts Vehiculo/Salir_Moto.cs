@@ -30,8 +30,9 @@ public class Salir_Moto : MonoBehaviour
     private void bajarMoto()
     {
         Player.SetActive(true);
-        Player.transform.position = sphereRB.transform.position + Vector3.left * 2.5f
-                                     + Vector3.up * 0.5f; 
+        Player.transform.position = this.transform.position;
+       // Player.transform.position = sphereRB.transform.position + Vector3.left * 2.5f
+       //                             + Vector3.up * 0.5f; 
         camaraMoto.SetActive(false);
         indicarPosicion.SetActive(false);
         CameraMinimap.conduciendo = false;

@@ -42,7 +42,8 @@ public class Player_Controller : MonoBehaviour
     {
         float vel = running ? runSpeed : walkSpeed;
 
-        rb.velocity = transform.forward * vel * inputMovimiento.y
+        rb.velocity = transform.forward * vel * inputMovimiento.y +
+                        transform.right * vel * inputMovimiento.x
                         + new Vector3(0, rb.velocity.y, 0);
 
         rotX -= inputRotacion.y;
