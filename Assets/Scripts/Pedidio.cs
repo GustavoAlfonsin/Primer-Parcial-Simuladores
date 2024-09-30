@@ -10,6 +10,8 @@ public class Pedidio
 
     public double propina { get; set; }
 
+    public bool entregado;
+
     public Pedidio(GameObject destino)
     {
         this.Destino = destino;
@@ -18,5 +20,6 @@ public class Pedidio
         int unidades = Random.Range(1,10);
         montoACobrar = (double)centenas + decenas + unidades;
         propina = montoACobrar * 10 / 100;
+        entregado = false;
     }
 }

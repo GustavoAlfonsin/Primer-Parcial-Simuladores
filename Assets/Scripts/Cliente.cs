@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class Cliente : MonoBehaviour, IInteractiveObject
 {
-    private GameObject player;
+    [SerializeField] private GameObject infoPedidos;
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        infoPedidos = GameObject.Find("RecogedorPedidos");
+        //padre = this.transform.parent.GetComponent<GameObject>().gameObject;
     }
     public void interactuar()
     {
-        throw new System.NotImplementedException();
+        GameObject padre = transform.parent.gameObject;
+        infoPedidos.GetComponent<ContenedorPedidos>().registrarPedidoEntregado(padre);
     }
 }

@@ -6,6 +6,7 @@ public class SubirMoto : MonoBehaviour, IInteractiveObject
 {
     [SerializeField]private GameObject camaraMoto;
     public GameObject Player;
+    public GameObject indicarPosicion;
     public Vehiculo_Controller controlador_Moto;
     public GameObject bajarMoto;
    
@@ -13,6 +14,8 @@ public class SubirMoto : MonoBehaviour, IInteractiveObject
     {
         Player.SetActive(false);
         camaraMoto.SetActive(true);
+        indicarPosicion.SetActive(true);
+        CameraMinimap.conduciendo = true;
         controlador_Moto.enabled = true;
         bajarMoto.SetActive(true);
     }
