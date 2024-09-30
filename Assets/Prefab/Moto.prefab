@@ -468,7 +468,7 @@ MonoBehaviour:
   camaraMoto: {fileID: 7483825144006614718}
   indicarPosicion: {fileID: 2896768231106594588}
   Player: {fileID: 0}
-  sphereRB: {fileID: 6764047139867612286}
+  moto: {fileID: 1889801702605888830}
   controller_Moto: {fileID: 5777983131911572317}
 --- !u!1 &6181786747634430126
 GameObject:
